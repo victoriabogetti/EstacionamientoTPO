@@ -1,0 +1,5 @@
+Estado del estacionamiento mostrado al usuario.
+Vehículo HOL123 reservó la plaza 1 por 3 horas.
+Vehículo HOL123 salió de la plaza 1. Costo total: $2000
+Vehículo AAA222 reservó la plaza 1 por 3 horas.
+Vehículo AAA222 salió de la plaza 1. Costo total: $5000
