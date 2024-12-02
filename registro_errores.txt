@@ -1,9 +1,2 @@
-Error archivo no
-Error en la escritura del archivo de registro
-Error general: pytest: reading from stdin while output is captured!  Consider using `-s`.
-Error en el acceso/escritura del archivo de registro
-Error en el acceso/escritura del archivo de registro
-Error general: pytest: reading from stdin while output is captured!  Consider using `-s`.
-Error en el acceso/escritura del archivo de registro
-Error en el acceso/escritura del archivo de registro
-Intento de salida fallido: vehículo no encontrado.
+Error inesperado en el registro de dinero por auto: 'int' object is not iterable
+Error inesperado en el registro de dinero por auto: 'int' object is not iterable

@@ -1,2 +1,2 @@
 Vehículo HOL123 reservó la plaza 1 por 3 horas.
-Vehículo AAA222 reservó la plaza 1 por 3 horas.
+Vehículo HOT123 reservó la plaza 2 por 3 horas.

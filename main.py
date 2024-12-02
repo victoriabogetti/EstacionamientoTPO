@@ -52,11 +52,11 @@ def registrar_dinero_por_auto(valores, patentes):
 
 
 
-def registrar_dinero_total(valor_total):
+def registrar_dinero_total(valor):
     try:
         archivo = open("registro_monto.txt","a", encoding="UTF-8")  #modo "a" para escribir el archivo sin pisar el contenido anterior
         #UTF-8 para mantener los caracteres especiales y acentuaciones
-        valor_total_str = str(valor_total)
+        valor_total_str = str(valor)
         print(valor_total_str)
         archivo.write("MONTO TOTAL DIARIO ---> " + valor_total_str + "\n")
     except IOError:    #maneja errores relacionados con el acceso o la escritura en el archivo
@@ -183,9 +183,8 @@ def ingresar_patente():
     """Solicita al usuario una patente válida."""
     patente = input("Ingrese la patente del vehículo: ").upper()
     patron = '[A-Z]{3}[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}'
-    if len(patente) == 6 or len(patente) == 7:   #condicion de que las patentes ingresadas sean de 6 o 7 digitos
-        if patente in patron:   #condicion de que la patente exista dentro del patron
-            return patente
+    if len(patente) == 6 or len(patente) == 7 and re.fullmatch(patron, patente): #condicion de que las patentes ingresadas sean de 6 o 7 digitos
+        return patente       # Valida si la patente coincide con el patrón
     print("Patente inválida. Inténtelo de nuevo.")
     return ingresar_patente()  #Llamada recursiva si la entrada no es válida
 
@@ -205,7 +204,6 @@ def ingresar_horas_reserva():
     except Exception as e:
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el ingreso de horas de reserva: {e}")
-        
     return ingresar_horas_reserva()  #Llamada recursiva para repetir hasta obtener una entrada válida
 
 
@@ -258,8 +256,6 @@ def salida_vehiculo(patente, horas_permanencia):
     except Exception as e:
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado al procesar la salida de vehículo: {e}")
-
-
 
 #funcion principal para el menu del sistema
 def main():
@@ -319,8 +315,6 @@ def main():
         registrar_error(f"Error inesperado en el programa main: {e}")
 
 main() #llama a la funcion principal para comenzar el programa
-
-
 
 """
 Sistema de Gestión para estacionamientos. Debe incluir:
