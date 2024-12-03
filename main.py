@@ -11,8 +11,6 @@ vehiculos = {} #diccionario para alamacenar informacion de los vehiculos ingresa
 dinero = [] #montos que se van a almacenar por cada vehiculo ingresado.
 total_dinero = [] #Declaramos la variable para calcular el monto total
 
-
-
 #funcion para registrar entradas de vehiculos en un archivo
 def registrar_entradas(mensaje):
     """ 
@@ -30,12 +28,11 @@ def registrar_entradas(mensaje):
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el registro de entradas: {e}")
 
-
-
+#funcion para registrar el dinero de cada patente en el archivo "registro.monto.txt"
 def registrar_dinero_por_auto(valores, patentes):
     """ 
     Propósito: Guarda el dinero ingresado por auto en un archivo llamado registro_monto.txt.
-    Uso típico: Registrar el dinero que ingreeso de cada vehículo para mantener un historial.
+    Uso típico: Registrar el dinero que ingreso de cada vehículo para mantener un historial.
     """
     try:
         archivo = open("registro_monto.txt","a", encoding="UTF-8")  #modo "a" para escribir el archivo sin pisar el contenido anterior
@@ -50,14 +47,16 @@ def registrar_dinero_por_auto(valores, patentes):
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el registro de dinero por auto: {e}")
 
-
-
+#funcion para registrar el dinero total en el archivo "registro.monto.txt"
 def registrar_dinero_total(valor):
+    """ 
+    Propósito: Guarda el dinero ingresado total en un archivo llamado registro_monto.txt.
+    Uso típico: Registrar el dinero total del dia para mantener un historial.
+    """
     try:
         archivo = open("registro_monto.txt","a", encoding="UTF-8")  #modo "a" para escribir el archivo sin pisar el contenido anterior
         #UTF-8 para mantener los caracteres especiales y acentuaciones
         valor_total_str = str(valor)
-        print(valor_total_str)
         archivo.write("MONTO TOTAL DIARIO ---> " + valor_total_str + "\n")
     except IOError:    #maneja errores relacionados con el acceso o la escritura en el archivo
         print("Error al acceder/escribir en el archivo de registro.")
@@ -65,8 +64,6 @@ def registrar_dinero_total(valor):
     except Exception as e:
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el registro de dinero total: {e}")
-
-
 
 #funcion para registrar actividades en un archivo
 def registrar_en_archivo(mensaje):
@@ -85,8 +82,7 @@ def registrar_en_archivo(mensaje):
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el registro de estacionamiento: {e}")
 
-
-
+#funcion para registrar posibles errores en todo el programa
 def registrar_error(error):
     """ 
     Proposito: registrar mensajes de error en un archivo de texto llamado registro_errores.txt.
@@ -102,8 +98,6 @@ def registrar_error(error):
     except Exception as e:
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el registro de errores: {e}")
-
-
 
 #funcion buscar patentes
 def autos_por_dia():
@@ -129,8 +123,6 @@ def autos_por_dia():
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el registro de patentes de autos por día: {e}")
 
-
-
 #funcion para contar cantidad de patentes
 def cantidad_autos():
     """ 
@@ -150,7 +142,6 @@ def cantidad_autos():
     print(f"EL DIA DE LA FECHA INGRESARON {cantidad_por_dia} AUTOS")
     return cantidad_por_dia
 
-
 #funcion contar dinero por dia
 def contar_dinero(dinero): 
    """
@@ -160,8 +151,6 @@ def contar_dinero(dinero):
    suma = reduce(lambda a, b: a + b, dinero)
    registrar_dinero_total(suma)
    return suma
-
-
 
 #funcion para mostrar el estado del estacionamiento (plazas disponibles/ocupadas)
 def mostrar_plazas():
@@ -176,8 +165,6 @@ def mostrar_plazas():
     registrar_en_archivo("Estado del estacionamiento mostrado al usuario.")
     print()
 
-
-
 #funcion para ingresar la patente al sistema. Verifica que sea una patente válida. En ella se utiliza recursividad
 def ingresar_patente():
     """Solicita al usuario una patente válida."""
@@ -187,8 +174,6 @@ def ingresar_patente():
         return patente       # Valida si la patente coincide con el patrón
     print("Patente inválida. Inténtelo de nuevo.")
     return ingresar_patente()  #Llamada recursiva si la entrada no es válida
-
-
 
 #funcion para ingresar las horas de reserva del vehiculo al sistema. Verifica que sea una hora válida entre 1 y 24. En ella se utiliza recursividad
 def ingresar_horas_reserva():
@@ -205,8 +190,6 @@ def ingresar_horas_reserva():
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en el ingreso de horas de reserva: {e}")
     return ingresar_horas_reserva()  #Llamada recursiva para repetir hasta obtener una entrada válida
-
-
 
 #funcion para el ingreso de vehiculo y para reservar plaza            
 def reservar_plaza(patente, horas_reserva):
@@ -229,8 +212,6 @@ def reservar_plaza(patente, horas_reserva):
         print(f"Error inesperado: {e}")
         registrar_error(f"Error inesperado en la operación de reserva de plaza: {e}")
 
-
-
 #funcion para salida de vehiculo y calculo de costos
 def salida_vehiculo(patente, horas_permanencia):
     """ 
@@ -249,7 +230,7 @@ def salida_vehiculo(patente, horas_permanencia):
                     print(mensaje)
                     registrar_en_archivo(mensaje)
                     dinero.append(costo_total)
-                    registrar_dinero_por_auto(dinero, patente)
+                    registrar_dinero_por_auto([costo_total], patente)
             return dinero
         print("Vehículo no encontrado. La patente no coincide con ningún vehículo ingresado.")   #en caso de no encontrar el vehiculo despues de iterar por todas las plazas
         registrar_error("Intento de salida fallido: vehículo no encontrado.")
@@ -307,7 +288,6 @@ def main():
                 print("-------------------------------------")
                 print("Saliendo del sistema...")
                 break  #finaliza completamente el ciclo while
-            
             else:
                 print("Opción no válida.")
     except Exception as e:
