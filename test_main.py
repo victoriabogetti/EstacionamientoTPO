@@ -1,4 +1,4 @@
-from main import registrar_entradas, contar_dinero, autos_por_dia, cantidad_autos, salida_vehiculo
+from main import contar_dinero, autos_por_dia, cantidad_autos, salida_vehiculo
 import random
 
 def test_contar_dinero():
@@ -18,4 +18,6 @@ def test_salida_vehiculo():
     patente = "HOL123"
     horas_permanencia = 4
     salida_vehiculo(patente, horas_permanencia) == [4]
+
+    
     

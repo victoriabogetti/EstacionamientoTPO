@@ -1,2 +1,0 @@
-Error inesperado en el registro de dinero por auto: 'int' object is not iterable
-Error inesperado en el registro de dinero por auto: 'int' object is not iterable

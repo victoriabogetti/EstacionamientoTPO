@@ -1,4 +1,0 @@
-Vehículo HOL123 reservó la plaza 1 por 3 horas.
-Vehículo HOT123 reservó la plaza 2 por 3 horas.
-Vehículo HOL123 salió de la plaza 1. Costo total: $3000
-Vehículo HOT123 salió de la plaza 2. Costo total: $3000
